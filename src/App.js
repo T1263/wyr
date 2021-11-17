@@ -1,6 +1,13 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getInitialData } from './actions/shared';
 import './App.css';
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getInitialData());
+  });
   return (
     <div className="App">
       <header className="App-header">
