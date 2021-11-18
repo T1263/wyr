@@ -1,3 +1,12 @@
+.login {
+  border-radius: 20;
+  display: flex;
+  flex-direction: column;
+  height: 96vh;
+  align-items: center;
+  justify-content: center;
+}
 .head {
-  color: red;
+  font-size: 45px;
+  text-decoration: underline;
 }
