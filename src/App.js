@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getInitialData } from './actions/shared';
+import { getInitialData } from './features';
 import '../src/styles/global.css';
-import Login from './components/Login';
+import Login from './features/login/Login';
 
 function App() {
   const dispatch = useDispatch();

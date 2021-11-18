@@ -1,5 +1,5 @@
 import React from 'react';
-import css from '../styles/LoginForm.module.css';
+import css from './LoginForm.module.css';
 export default function LoginForm() {
   return (
     <div className={css.logInForm}>
