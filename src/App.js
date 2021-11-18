@@ -5,6 +5,7 @@ import { fetchQuestions } from './features/questions/questionsSlice';
 import '../src/styles/global.css';
 import Login from './features/login/Login';
 import Start from './features/start/Start';
+import Nav from './features/nav/Nav';
 
 function App() {
   const dispatch = useDispatch();
@@ -21,9 +22,7 @@ function App() {
     return <Login />;
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Header</h1>
-      </header>
+      <Nav />
       {questionsLoading && usersLoading && <h3 align="center">...loading.</h3>}
       {!questionsLoading && !usersLoading && <Start />}
     </div>

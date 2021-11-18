@@ -11,7 +11,7 @@ export const loginSlice = createSlice({
       state.value = action.payload;
     },
     logOut: (state) => {
-      state.value = '';
+      state.value = null;
     },
   },
 });
