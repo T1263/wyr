@@ -10,8 +10,9 @@ import Nav from './features/nav/Nav';
 function App() {
   const dispatch = useDispatch();
   const loggedUser = useSelector(({ loggedUser }) => loggedUser.value);
-  const questionsLoading = useSelector(({ questions }) => questions.loading);
-  const usersLoading = useSelector(({ users }) => users.loading);
+  const [usersLoading, questionsLoading] = useSelector(
+    ({ users, questions }) => [users.loading, questions.loading]
+  );
 
   useEffect(() => {
     dispatch(fetchUsers());
