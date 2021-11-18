@@ -1,15 +1,9 @@
 import { _getUsers, _getQuestions } from '../_DATA';
 import { setUsers } from './users/usersSlice';
 import { setquestions } from './questions/questionsSlice';
-import { createSlice } from '@reduxjs/toolkit';
-// import { receiveError } from '../actions/logError';
+import { setError } from '../features/errorSlice';
 
-const errorSlice = createSlice({
-  name: 'error',
-  initialState: '',
-  reducers: {},
-});
-
+// Sets our initial Data
 export function getInitialData() {
   return async (dispatch) => {
     try {
@@ -18,7 +12,7 @@ export function getInitialData() {
       dispatch(setUsers(users));
       dispatch(setquestions(questions));
     } catch (error) {
-      // dispatch(receiveError(error.toString()));
+      dispatch(setError(error.toString()));
     }
   };
 }
