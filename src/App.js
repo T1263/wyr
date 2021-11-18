@@ -6,7 +6,7 @@ import Login from './features/login/Login';
 
 function App() {
   const dispatch = useDispatch();
-  const loggedUser = useSelector((state) => state.loggedUser);
+  const loggedUser = useSelector(({ loggedUser }) => loggedUser);
 
   useEffect(() => {
     dispatch(getInitialData());
