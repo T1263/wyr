@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getInitialData } from './actions/shared';
-import './App.css';
-
+import '../src/styles/global.css';
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
