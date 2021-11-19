@@ -22,7 +22,7 @@ function App() {
     }
     dispatch(fetchUsers());
     dispatch(fetchQuestions());
-  }, [navigate, dispatch]);
+  }, [navigate, dispatch, loggedUser]);
 
   return (
     <div className="App">
