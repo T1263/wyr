@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Question from '../questions/Question';
+import Question from '../../questions/Question';
 import css from './Start.module.css';
 
 export default function Start() {
