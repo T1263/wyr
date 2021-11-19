@@ -7,7 +7,11 @@ import { fetchUsers } from '../users/usersSlice';
 
 export default function LoginForm() {
   const [userId, setUserId] = useState('choose');
-  const { users } = useSelector(({ users }) => users);
+  const { users, loading } = useSelector(({ users, loading }) => ({
+    ...users,
+    ...loading,
+  }));
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSubmit = (e) => {
@@ -27,7 +31,7 @@ export default function LoginForm() {
     <form className={css.form} onSubmit={handleSubmit}>
       <select value={userId} onChange={({ target }) => setUserId(target.value)}>
         <option value="choose" key="1" disabled>
-          Choose a User:
+          {loading ? '...loading' : 'Choose a User:'}
         </option>
         {Object.keys(users).map((id) => (
           <option value={users[id].id} key={id}>
@@ -36,7 +40,7 @@ export default function LoginForm() {
         ))}
       </select>
       <button type="submit" disabled={disabled()}>
-        Login
+        In →
       </button>
     </form>
   );
