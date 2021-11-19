@@ -1,14 +1,23 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import Question from '../questions/Question';
+import css from './Start.module.css';
 
 export default function Start() {
-  const { questions } = useSelector(({ questions }) => questions);
+  const [{ questions }, { users }] = useSelector(({ questions, users }) => [
+    questions,
+    users,
+  ]);
 
   return (
-    <div>
+    <div className={css.start}>
       <ul>
-        {Object.keys(questions).map((question, sec) => (
-          <li key={questions[question].id}> {questions[question].author} </li>
+        {Object.keys(questions).map((id) => (
+          <Question
+            key={id}
+            question={questions[id]}
+            user={users[questions[id].author]}
+          />
         ))}
       </ul>
     </div>
