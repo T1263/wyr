@@ -7,6 +7,7 @@ import Login from './features/login/Login';
 import Start from './features/start/Start';
 import Nav from './features/nav/Nav';
 import { Routes, Route, useNavigate } from 'react-router';
+import Footer from './features/footer/Footer';
 
 function App() {
   const dispatch = useDispatch();
@@ -26,12 +27,12 @@ function App() {
 
   return (
     <div className="App">
+      <Nav />
       <Routes>
         <Route
           path="/"
           element={
             <div>
-              <Nav />
               {questionsLoading && usersLoading && (
                 <h3 align="center">...loading.</h3>
               )}
@@ -41,6 +42,7 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
