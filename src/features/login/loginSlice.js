@@ -7,7 +7,6 @@ export const loginSlice = createSlice({
   },
   reducers: {
     logIn: (state, action) => {
-      console.log(action);
       state.value = action.payload;
     },
     logOut: (state) => {
