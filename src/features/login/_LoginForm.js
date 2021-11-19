@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import css from './LoginForm.module.css';
 import { logIn } from './loginSlice';
+import { fetchUsers } from '../users/usersSlice';
 
 export default function LoginForm() {
   const [userId, setUserId] = useState('choose');
@@ -14,6 +15,9 @@ export default function LoginForm() {
     dispatch(logIn(userId));
     navigate('/', { replace: true });
   };
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, [dispatch]);
   const disabled = () => {
     if (userId !== '' && userId !== 'choose') return false;
 
