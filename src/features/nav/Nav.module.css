@@ -25,10 +25,15 @@
   flex-direction: row;
   color: black;
 }
-.menu li {
+.menu li a {
   list-style: none;
   padding: 20px;
   color: white;
+  text-decoration: none;
+}
+
+.active {
+  text-decoration: underline !important;
 }
 
 .userInfo {
