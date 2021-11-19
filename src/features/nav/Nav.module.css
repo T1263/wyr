@@ -50,3 +50,18 @@
 .userInfo p {
   padding: 10px;
 }
+
+.userInfo button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 36px;
+  padding-top: 5px;
+  background: white;
+  border: 0;
+}
+
+.userInfo button:hover {
+  background: red;
+  color: #212121;
+}

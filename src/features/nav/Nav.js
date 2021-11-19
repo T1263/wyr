@@ -55,16 +55,17 @@ export default function Nav() {
                 alt={`avatar of ${currentUser.id}`}
               />
               <p>{currentUser.id}</p>
+
+              <button
+                onClick={() => {
+                  dispatch(logOut());
+                  navigate('/login', { replace: true });
+                }}
+              >
+                Out →
+              </button>
             </div>
           )}
-          <button
-            onClick={() => {
-              dispatch(logOut());
-              navigate('/login', { replace: true });
-            }}
-          >
-            LogOut
-          </button>
         </div>
       </div>
     </div>
