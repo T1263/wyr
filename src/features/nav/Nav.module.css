@@ -1,0 +1,47 @@
+.nav {
+  display: flex;
+  background: #212121;
+  max-width: 100%;
+  height: 72px;
+  justify-content: center;
+  color: white;
+}
+
+.navLeft {
+  display: flex;
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navRight {
+  display: flex;
+  /* align-items: center; */
+  justify-content: flex-end;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  color: black;
+}
+.menu li {
+  list-style: none;
+  padding: 20px;
+  color: white;
+}
+
+.userInfo {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.userInfo img {
+  width: 54px;
+  height: 54px;
+}
+.userInfo p {
+  padding: 10px;
+}
