@@ -14,6 +14,11 @@ export default function LoginForm() {
     dispatch(logIn(userId));
     navigate('/', { replace: true });
   };
+  const disabled = () => {
+    if (userId !== '' && userId !== 'choose') return false;
+
+    return true;
+  };
   return (
     <form className={css.form} onSubmit={handleSubmit}>
       <select value={userId} onChange={({ target }) => setUserId(target.value)}>
@@ -26,7 +31,9 @@ export default function LoginForm() {
           </option>
         ))}
       </select>
-      <button type="submit">Login</button>
+      <button type="submit" disabled={disabled()}>
+        Login
+      </button>
     </form>
   );
 }

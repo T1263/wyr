@@ -17,7 +17,10 @@
   color: white;
   border: none;
 }
-
 .form button:hover {
   background: #464545;
+}
+.form button:disabled {
+  background: rgb(99, 98, 98);
+  cursor: not-allowed;
 }
