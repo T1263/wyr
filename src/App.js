@@ -6,6 +6,7 @@ import '../src/styles/global.css';
 import Login from './features/login/Login';
 import Start from './features/start/Start';
 import Nav from './features/nav/Nav';
+import { Routes, Route, useNavigate } from 'react-router';
 
 function App() {
   const dispatch = useDispatch();
@@ -13,19 +14,33 @@ function App() {
   const [usersLoading, questionsLoading] = useSelector(
     ({ users, questions }) => [users.loading, questions.loading]
   );
+  const navigate = useNavigate();
 
   useEffect(() => {
+    if (loggedUser === null) {
+      navigate('/login', { replace: true });
+    }
     dispatch(fetchUsers());
     dispatch(fetchQuestions());
-  }, [dispatch]);
+  }, [navigate, dispatch]);
 
-  if (loggedUser === null && !questionsLoading && !usersLoading)
-    return <Login />;
   return (
     <div className="App">
-      <Nav />
-      {questionsLoading && usersLoading && <h3 align="center">...loading.</h3>}
-      {!questionsLoading && !usersLoading && <Start />}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div>
+              <Nav />
+              {questionsLoading && usersLoading && (
+                <h3 align="center">...loading.</h3>
+              )}
+              {!questionsLoading && !usersLoading && <Start />}
+            </div>
+          }
+        />
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </div>
   );
 }

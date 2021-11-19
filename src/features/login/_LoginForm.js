@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import css from './LoginForm.module.css';
 import { logIn } from './loginSlice';
+
 export default function LoginForm() {
   const [userId, setUserId] = useState('choose');
   const { users } = useSelector(({ users }) => users);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(logIn(userId));
+    navigate('/', { replace: true });
   };
   return (
     <form className={css.form} onSubmit={handleSubmit}>

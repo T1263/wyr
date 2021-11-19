@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { logOut } from '../login/loginSlice';
 import Logo from '../logo/Logo';
 import css from './Nav.module.css';
@@ -7,7 +8,7 @@ export default function Nav() {
   const currentUser = useSelector(
     ({ users, loggedUser }) => users.users[loggedUser.value]
   );
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   return (
     <div className={css.nav}>
@@ -29,7 +30,14 @@ export default function Nav() {
               <p>{currentUser.id}</p>
             </div>
           )}
-          <button onClick={() => dispatch(logOut())}>LogOut</button>
+          <button
+            onClick={() => {
+              dispatch(logOut());
+              navigate('/login', { replace: true });
+            }}
+          >
+            LogOut
+          </button>
         </div>
       </div>
     </div>
