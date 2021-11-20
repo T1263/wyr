@@ -8,17 +8,22 @@ import { Routes, Route, useNavigate } from 'react-router';
 import Footer from './features/footer/Footer';
 import NewPoll from './app/pages/newPoll/NewPoll';
 import LeaderBoard from './app/pages/leaderBoard/LeaderBoard';
+import { useDispatch } from 'react-redux';
+import { fetchQuestions } from './features/questions/questionsSlice';
+import { fetchUsers } from './features/users/usersSlice';
 
 function App() {
   const loggedUser = useSelector(({ loggedUser }) => loggedUser.value);
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
+    dispatch(fetchUsers());
+    dispatch(fetchQuestions());
     if (loggedUser === null) {
       navigate('/login', { replace: true });
     }
-  }, [navigate, loggedUser]);
+  }, [dispatch, navigate, loggedUser]);
 
   return (
     <div className="App">
