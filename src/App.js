@@ -1,10 +1,9 @@
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
 import '../src/styles/global.css';
 import Login from './features/login/Login';
 import Start from './app/pages/start/Start';
 import Nav from './features/nav/Nav';
-import { Routes, Route, useNavigate } from 'react-router';
+import { Routes, Route } from 'react-router';
 import Footer from './features/footer/Footer';
 import NewPoll from './app/pages/newPoll/NewPoll';
 import LeaderBoard from './app/pages/leaderBoard/LeaderBoard';
@@ -13,17 +12,12 @@ import { fetchQuestions } from './features/questions/questionsSlice';
 import { fetchUsers } from './features/users/usersSlice';
 
 function App() {
-  const loggedUser = useSelector(({ loggedUser }) => loggedUser.value);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchUsers());
     dispatch(fetchQuestions());
-    if (loggedUser === null) {
-      navigate('/login', { replace: true });
-    }
-  }, [dispatch, navigate, loggedUser]);
+  }, [dispatch]);
 
   return (
     <div className="App">
