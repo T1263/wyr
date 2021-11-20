@@ -1,0 +1,14 @@
+.card {
+  margin: 10px;
+}
+
+.list li {
+  list-style: decimal;
+  list-style-position: outside;
+}
+
+.heading {
+  color: #212121;
+  text-align: center;
+  text-decoration: underline;
+}

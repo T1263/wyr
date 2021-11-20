@@ -1,25 +1,33 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import Question from '../../../features/questions/Question';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import List from '../../../features/questions/List';
 import css from './Start.module.css';
+import { fetchQuestions } from '../../../features/questions/questionsSlice';
 
 export default function Start() {
-  const [{ questions }, { users }] = useSelector(({ questions, users }) => [
-    questions,
-    users,
-  ]);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchQuestions());
+  }, [dispatch]);
+
+  const [{ questions }, { users }, loggedUser] = useSelector(
+    ({ questions, users, loggedUser }) => [questions, users, loggedUser.value]
+  );
 
   return (
     <div className={css.start}>
-      <ul>
-        {Object.keys(questions).map((id) => (
-          <Question
-            key={id}
-            question={questions[id]}
-            user={users[questions[id].author]}
-          />
-        ))}
-      </ul>
+      <List
+        name="Unanswered"
+        borderPosition="borderRight"
+        questions={questions}
+        users={users}
+      />
+      <List
+        name="Answered"
+        borderPosition="borderLeft"
+        questions={questions}
+        users={users}
+      />
     </div>
   );
 }
