@@ -11,22 +11,26 @@ export default function Start() {
     dispatch(fetchQuestions());
   }, [dispatch]);
 
-  const { unanswered, answered, users } = useSelector(questionSelector);
+  const { unanswered, answered, users, loading } =
+    useSelector(questionSelector);
 
   return (
-    <div className={css.start}>
-      <List
-        name="Unanswered"
-        borderPosition="borderRight"
-        questions={unanswered}
-        users={users}
-      />
-      <List
-        name="Answered"
-        borderPosition="borderLeft"
-        questions={answered}
-        users={users}
-      />
+    <div>
+      {loading && <h2 align="center">...loading</h2>}
+      <div className={css.start}>
+        <List
+          name="Unanswered"
+          borderPosition="borderRight"
+          questions={unanswered}
+          users={users}
+        />
+        <List
+          name="Answered"
+          borderPosition="borderLeft"
+          questions={answered}
+          users={users}
+        />
+      </div>
     </div>
   );
 }

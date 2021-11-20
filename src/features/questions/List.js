@@ -7,13 +7,15 @@ export default function List({ name, questions, users }) {
     <div className={css.card}>
       <h2 className={css.heading}>{name}</h2>
       <ul className={css.list}>
-        {Object.keys(questions).map((id) => (
-          <Question
-            key={id}
-            question={questions[id]}
-            user={users[questions[id].author]}
-          />
-        ))}
+        {Object.keys(questions)
+          .map((id) => (
+            <Question
+              key={id}
+              question={questions[id]}
+              user={users[questions[id].author]}
+            />
+          ))
+          .reverse()}
       </ul>
     </div>
   );

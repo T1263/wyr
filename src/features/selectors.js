@@ -14,5 +14,10 @@ export const questionSelector = (state) => {
   Object.keys(users.users[loggedUser.value].answers).forEach((item) => {
     answered.push(questions.questions[item]);
   });
-  return { unanswered, answered, users: users.users };
+  return {
+    unanswered,
+    answered,
+    users: users.users,
+    loading: questions.loading,
+  };
 };
