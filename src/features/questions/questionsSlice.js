@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { _getQuestions } from '../../_DATA';
+import { _getQuestions, _saveQuestion } from '../../_DATA';
 export const fetchQuestions = createAsyncThunk(
   'questions/fetchAll',
   async () => {
@@ -7,17 +7,19 @@ export const fetchQuestions = createAsyncThunk(
   }
 );
 
+export const addQuestion = createAsyncThunk(
+  'questions/add',
+  async (question) => {
+    return await _saveQuestion(question);
+  }
+);
 export const questionsSlice = createSlice({
   name: 'questions',
   initialState: {
     questions: {},
     loading: false,
   },
-  reducers: {
-    setquestions: (state, action) => {
-      state.questions = action.payload;
-    },
-  },
+
   extraReducers: (builder) => {
     builder.addCase(fetchQuestions.pending, (state) => {
       state.loading = true;
@@ -26,8 +28,14 @@ export const questionsSlice = createSlice({
       state.questions = action.payload;
       state.loading = false;
     });
+    builder.addCase(addQuestion.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(addQuestion.fulfilled, (state, action) => {
+      state.questions[action.payload.id] = action.payload;
+      state.loading = false;
+    });
   },
 });
 
-export const { setquestions } = questionsSlice.actions;
 export default questionsSlice.reducer;
