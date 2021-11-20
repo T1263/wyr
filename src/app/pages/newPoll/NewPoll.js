@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-
 import { addQuestion } from '../../../features/questions/questionsSlice';
-import { _saveQuestion } from '../../../_DATA';
 import css from './NewPoll.module.css';
 export default function NewPoll() {
   const dispatch = useDispatch();
