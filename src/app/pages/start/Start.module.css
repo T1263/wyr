@@ -3,3 +3,22 @@
   justify-items: center;
   justify-content: center;
 }
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.tabs .tabsButtons span {
+  margin: 20px;
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+}
+.active {
+  border-bottom: 3px solid #212121 !important;
+}
