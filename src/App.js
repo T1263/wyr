@@ -24,7 +24,7 @@ function App() {
     <div className="App">
       <Nav />
       <Routes>
-        <Route path="/" element={<Start />} />
+        <Route index path="/" element={<Start />} />
         <Route path="/new" element={<NewPoll />} />
         <Route path="/leaderboard" element={<LeaderBoard />} />
         <Route path="/login" element={<Login />} />
