@@ -1,16 +1,10 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import List from '../../../features/questions/List';
 import css from './Start.module.css';
-import { fetchQuestions } from '../../../features/questions/questionsSlice';
 import { questionSelector } from '../../../features/selectors';
 
 export default function Start() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchQuestions());
-  }, [dispatch]);
-
   const { unanswered, answered, users, loading } =
     useSelector(questionSelector);
 
