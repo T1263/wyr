@@ -7,9 +7,8 @@ import { fetchUsers } from '../users/usersSlice';
 
 export default function LoginForm() {
   const [userId, setUserId] = useState('choose');
-  const { users, loading } = useSelector(({ users, loading }) => ({
+  const { users, loading } = useSelector(({ users }) => ({
     ...users,
-    ...loading,
   }));
 
   const dispatch = useDispatch();
