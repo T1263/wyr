@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import List from '../../../features/questions/List';
 import css from './Start.module.css';
 import { fetchQuestions } from '../../../features/questions/questionsSlice';
+import { questionSelector } from '../../../features/selectors';
 
 export default function Start() {
   const dispatch = useDispatch();
@@ -10,22 +11,20 @@ export default function Start() {
     dispatch(fetchQuestions());
   }, [dispatch]);
 
-  const [{ questions }, { users }, loggedUser] = useSelector(
-    ({ questions, users, loggedUser }) => [questions, users, loggedUser.value]
-  );
+  const { unanswered, answered, users } = useSelector(questionSelector);
 
   return (
     <div className={css.start}>
       <List
         name="Unanswered"
         borderPosition="borderRight"
-        questions={questions}
+        questions={unanswered}
         users={users}
       />
       <List
         name="Answered"
         borderPosition="borderLeft"
-        questions={questions}
+        questions={answered}
         users={users}
       />
     </div>
