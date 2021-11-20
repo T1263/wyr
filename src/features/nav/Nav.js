@@ -26,31 +26,16 @@ export default function Nav() {
         <div className={css.navLeft}>
           <Logo />
           <ul className={css.menu}>
-            <li>
-              <Link
-                className={location.pathname === '/' ? css.active : ''}
-                to="/"
-              >
-                Start
-              </Link>
+            <li className={location.pathname === '/' ? css.active : ''}>
+              <Link to="/">Start</Link>
             </li>
-            <li>
-              <Link
-                className={location.pathname === '/new' ? css.active : ''}
-                to="/new"
-              >
-                New Poll
-              </Link>
+            <li className={location.pathname === '/new' ? css.active : ''}>
+              <Link to="/new">New Poll</Link>
             </li>
-            <li>
-              <Link
-                className={
-                  location.pathname === '/leaderboard' ? css.active : ''
-                }
-                to="/leaderboard"
-              >
-                Leaderboard
-              </Link>
+            <li
+              className={location.pathname === '/leaderboard' ? css.active : ''}
+            >
+              <Link to="/leaderboard">Leaderboard</Link>
             </li>
           </ul>
         </div>

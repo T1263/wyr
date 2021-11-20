@@ -33,7 +33,7 @@
 }
 
 .active {
-  text-decoration: underline !important;
+  border-bottom: 3px solid white !important;
 }
 
 .userInfo {
