@@ -21,3 +21,18 @@ export const questionSelector = (state) => {
     loading: questions.loading,
   };
 };
+
+export const leaderBoardSelector = (state) => {
+  const { users } = state.users;
+
+  const leaders = Object.keys(users).map((key) => {
+    return {
+      id: users[key].id,
+      avatarURL: users[key].avatarURL,
+      answers: Object.keys(users[key].answers).length,
+      questions: Object.keys(users[key].questions).length,
+    };
+  });
+
+  return leaders;
+};
