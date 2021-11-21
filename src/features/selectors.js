@@ -34,5 +34,7 @@ export const leaderBoardSelector = (state) => {
     };
   });
 
-  return leaders;
+  return leaders
+    .sort((a, b) => a.answers + a.questions - (b.answers + b.questions))
+    .reverse();
 };

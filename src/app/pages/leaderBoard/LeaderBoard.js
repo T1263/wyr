@@ -33,7 +33,7 @@ export default function LeaderBoard() {
   return (
     <div className={css.leaders}>
       {leaders.map((user) => (
-        <LeaderCard {...user} />
+        <LeaderCard key={user.id} {...user} />
       ))}
     </div>
   );
