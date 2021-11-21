@@ -29,23 +29,27 @@ export default function NewPoll() {
   };
   return (
     <div className={css.newPoll}>
-      <h2> New Poll </h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          value={option1}
-          placeholder="Enter Option 1"
-          type="text"
-          onChange={({ target }) => setOption1(target.value)}
-        />
-        <small className={css.or}> OR </small>
-        <input
-          value={option2}
-          placeholder="Enter Option 2"
-          type="text"
-          onChange={({ target }) => setOption2(target.value)}
-        />
-        <button disabled={disabled()}>Create</button>
-      </form>
+      <div className={css.div}>
+        <h2> New Poll </h2>
+        <form onSubmit={handleSubmit}>
+          <input
+            value={option1}
+            placeholder="Enter Option 1"
+            type="text"
+            onChange={({ target }) => setOption1(target.value)}
+          />
+          <small className={css.or}> OR </small>
+          <input
+            value={option2}
+            placeholder="Enter Option 2"
+            type="text"
+            onChange={({ target }) => setOption2(target.value)}
+          />
+          <button type="submit" disabled={disabled()}>
+            Create
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
