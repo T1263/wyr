@@ -1,7 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import css from './Question.module.css';
+
 export default function Question({ question, user }) {
   const { id, avatarURL } = user;
+  const navigate = useNavigate();
+  const goToPage = () => {
+    navigate(`/question/${question.id}`, {
+      state: {
+        question,
+        user,
+      },
+    });
+  };
   return (
     <li>
       <div className={css.question}>
@@ -17,7 +28,9 @@ export default function Question({ question, user }) {
             </span>
           </div>
         </div>
-        <button className={css.button}>Or → Answer</button>
+        <button onClick={goToPage} className={css.button}>
+          Or → Answer
+        </button>
       </div>
     </li>
   );

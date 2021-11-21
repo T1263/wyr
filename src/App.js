@@ -10,6 +10,7 @@ import LeaderBoard from './app/pages/leaderBoard/LeaderBoard';
 import { useDispatch } from 'react-redux';
 import { fetchQuestions } from './features/questions/questionsSlice';
 import { fetchUsers } from './features/users/usersSlice';
+import QuestionPage from './app/pages/question/Question';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function App() {
         <Route path="/new" element={<NewPoll />} />
         <Route path="/leaderboard" element={<LeaderBoard />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/question/:id" element={<QuestionPage />} />
       </Routes>
       <Footer />
     </div>
