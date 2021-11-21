@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { _getQuestions, _saveQuestion, _saveQuestionAnswer } from '../../_DATA';
+import { updateAnswers } from '../users/usersSlice';
+
 export const fetchQuestions = createAsyncThunk(
   'questions/fetchAll',
   async () => {
@@ -9,8 +11,16 @@ export const fetchQuestions = createAsyncThunk(
 
 export const addQuestion = createAsyncThunk(
   'questions/add',
-  async (question) => {
-    return await _saveQuestion(question);
+  async (question, { dispatch }) => {
+    const savedQuestion = await _saveQuestion(question);
+
+    dispatch(
+      updateAnswers({
+        id: savedQuestion.id,
+        author: savedQuestion.author,
+      })
+    );
+    return savedQuestion;
   }
 );
 export const saveQuestionAnswer = createAsyncThunk(
