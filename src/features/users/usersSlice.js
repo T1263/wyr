@@ -12,8 +12,9 @@ export const usersSlice = createSlice({
     loading: false,
   },
   reducers: {
-    setUsers: (state, action) => {
-      state.users = action.payload;
+    updateAnswers: (state, action) => {
+      const { id, author } = action.payload;
+      state.users[author].questions.push(id);
     },
   },
   extraReducers: (builder) => {
@@ -27,5 +28,5 @@ export const usersSlice = createSlice({
   },
 });
 
-export const { setUsers } = usersSlice.actions;
+export const { setUsers, updateAnswers } = usersSlice.actions;
 export default usersSlice.reducer;

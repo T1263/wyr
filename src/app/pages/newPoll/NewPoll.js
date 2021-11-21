@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { addQuestion } from '../../../features/questions/questionsSlice';
+import { updateAnswers } from '../../../features/users/usersSlice';
+
 import css from './NewPoll.module.css';
 export default function NewPoll() {
   const dispatch = useDispatch();
@@ -13,13 +15,23 @@ export default function NewPoll() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(
+    const res = await dispatch(
       addQuestion({
         optionOneText: option1,
         optionTwoText: option2,
         author: loggedUser,
       })
     );
+
+    if (res.type === 'questions/add/fulfilled') {
+      //Todo Update current User - This could be moved somewhere else
+      dispatch(
+        updateAnswers({
+          id: res.payload.id,
+          author: res.payload.author,
+        })
+      );
+    }
 
     navigate('/', { replace: true });
   };
