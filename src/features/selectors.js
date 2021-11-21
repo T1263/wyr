@@ -30,7 +30,7 @@ export const leaderBoardSelector = (state) => {
       id: users[key].id,
       avatarURL: users[key].avatarURL,
       answers: Object.keys(users[key].answers).length,
-      questions: Object.keys(users[key].questions).length,
+      questions: users[key].questions.length,
     };
   });
 
