@@ -1,18 +1,32 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { saveQuestionAnswer } from '../../../features/questions/questionsSlice';
 
 import css from './QuestionPage.module.css';
 export default function QuestionPage() {
   const [question1, checkQuestion1] = useState(false);
   const [question2, checkQuestion2] = useState(false);
   const { question, user } = useLocation().state;
-  const { author, optionOne, optionTwo } = question;
+  const { id, author, optionOne, optionTwo } = question;
   const [showResults, setShowResults] = useState(false);
-
+  const loggedUser = useSelector(({ loggedUser }) => loggedUser.value);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleForm = (e) => {
     e.preventDefault();
-    // Save the answer
+
+    dispatch(
+      saveQuestionAnswer({
+        authedUser: loggedUser,
+        qid: id,
+        answer: question1 ? 'optionOne' : 'optionTwo',
+      })
+    );
+
     setShowResults(true);
+    //Todo: Show Results
+    // Fix state not updating
   };
 
   const disabled = () => question1 === false && question2 === false;

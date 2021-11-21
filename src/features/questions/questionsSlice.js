@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { _getQuestions, _saveQuestion } from '../../_DATA';
+import { _getQuestions, _saveQuestion, _saveQuestionAnswer } from '../../_DATA';
 export const fetchQuestions = createAsyncThunk(
   'questions/fetchAll',
   async () => {
@@ -11,6 +11,23 @@ export const addQuestion = createAsyncThunk(
   'questions/add',
   async (question) => {
     return await _saveQuestion(question);
+  }
+);
+export const saveQuestionAnswer = createAsyncThunk(
+  'questions/saveAnswer',
+  async (question) => {
+    // To satisfy fake backend
+    // question = {
+    //   authedUser: loggedUser,
+    //   qid: id,
+    //   answer: question1 ? 'optionOne' : 'optionTwo',
+    // }
+    // Backend does not return any value
+    await _saveQuestionAnswer(question);
+
+    //Lets return an object we can work with in our redux store since we have the question
+
+    return question;
   }
 );
 export const questionsSlice = createSlice({
@@ -34,6 +51,15 @@ export const questionsSlice = createSlice({
     builder.addCase(addQuestion.fulfilled, (state, action) => {
       state.questions[action.payload.id] = action.payload;
       state.loading = false;
+    });
+    builder.addCase(saveQuestionAnswer.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(saveQuestionAnswer.fulfilled, (state, action) => {
+      const { authedUser, answer, qid } = action.payload;
+
+      state.loading = false;
+      state.questions[qid][answer]['votes'].push(authedUser);
     });
   },
 });
