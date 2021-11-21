@@ -7,10 +7,12 @@ export default function QuestionPage() {
   const [question2, checkQuestion2] = useState(false);
   const { question, user } = useLocation().state;
   const { author, optionOne, optionTwo } = question;
+  const [showResults, setShowResults] = useState(false);
 
   const handleForm = (e) => {
     e.preventDefault();
     // Save the answer
+    setShowResults(true);
   };
 
   const disabled = () => question1 === false && question2 === false;

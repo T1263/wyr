@@ -2,11 +2,19 @@
   display: flex;
   width: 100%;
   justify-content: center;
+  padding-top: 30px;
+}
+
+.header {
+  text-align: center;
 }
 
 .card {
   display: flex;
   flex-direction: column;
+  border: 3px solid #212121;
+  width: 400px;
+  padding: 30px;
 }
 
 .content {
