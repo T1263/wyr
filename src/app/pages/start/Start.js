@@ -11,7 +11,6 @@ export default function Start() {
 
   return (
     <div className={css.tabs}>
-      {loading && <h2 align="center">...loading</h2>}
       <div className={css.tabsButtons}>
         <span
           className={active === 'Unanswered' ? css.active : ''}
@@ -26,24 +25,28 @@ export default function Start() {
           Answered
         </span>
       </div>
-      <div className={css.start}>
-        {active === 'Unanswered' && (
-          <List
-            name="Unanswered"
-            borderPosition="borderRight"
-            questions={unanswered}
-            users={users}
-          />
-        )}
-        {active === 'Answered' && (
-          <List
-            name="Answered"
-            borderPosition="borderLeft"
-            questions={answered}
-            users={users}
-          />
-        )}
-      </div>
+      {loading ? (
+        <h2 align="center">...loading</h2>
+      ) : (
+        <div className={css.start}>
+          {active === 'Unanswered' && (
+            <List
+              name="Unanswered"
+              borderPosition="borderRight"
+              questions={unanswered}
+              users={users}
+            />
+          )}
+          {active === 'Answered' && (
+            <List
+              name="Answered"
+              borderPosition="borderLeft"
+              questions={answered}
+              users={users}
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 }
