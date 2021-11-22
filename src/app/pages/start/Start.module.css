@@ -21,7 +21,8 @@
 }
 
 .tabs .tabsButtons span:last-of-type {
-  padding-right: 90px;
+  padding-right: 45px;
+  padding-left: 45px;
 }
 .active {
   border-bottom: 3px solid white !important;
