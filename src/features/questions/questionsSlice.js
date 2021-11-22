@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { _getQuestions, _saveQuestion, _saveQuestionAnswer } from '../../_DATA';
-import { updateQuestions } from '../users/usersSlice';
+import { updateQuestions, updateAnswers } from '../users/usersSlice';
 
 export const fetchQuestions = createAsyncThunk(
   'questions/fetchAll',
@@ -25,7 +25,7 @@ export const addQuestion = createAsyncThunk(
 );
 export const saveQuestionAnswer = createAsyncThunk(
   'questions/saveAnswer',
-  async (question) => {
+  async (question, { dispatch }) => {
     // To satisfy fake backend
     // question = {
     //   authedUser: loggedUser,
@@ -34,7 +34,7 @@ export const saveQuestionAnswer = createAsyncThunk(
     // }
     // Backend does not return any value
     await _saveQuestionAnswer(question);
-
+    dispatch(updateAnswers(question));
     //Lets return an object we can work with in our redux store since we have the question
 
     return question;

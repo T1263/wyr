@@ -16,6 +16,10 @@ export const usersSlice = createSlice({
       const { id, author } = action.payload;
       state.users[author].questions.push(id);
     },
+    updateAnswers: (state, action) => {
+      const { qid, answer, authedUser } = action.payload;
+      state.users[authedUser].answers[qid] = answer;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchUsers.pending, (state) => {
@@ -28,5 +32,5 @@ export const usersSlice = createSlice({
   },
 });
 
-export const { setUsers, updateQuestions } = usersSlice.actions;
+export const { setUsers, updateQuestions, updateAnswers } = usersSlice.actions;
 export default usersSlice.reducer;
