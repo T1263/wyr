@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -8,7 +9,7 @@ import css from './SignUp.module.css';
 export default function SignUp() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const loading = useSelector(({ users }) => users.loading);
   const [fname, setFname] = useState('');
   const [lname, setlname] = useState('');
 
@@ -16,6 +17,7 @@ export default function SignUp() {
     e.preventDefault();
     let fullName = fname + ' ' + lname;
     let userId = fullName.toLowerCase().replace(/ /g, '');
+
     await dispatch(
       signUpUsers({
         id: userId,
@@ -50,7 +52,7 @@ export default function SignUp() {
             onChange={({ target }) => setlname(target.value)}
           />
           <button type="submit" disabled={disabled()}>
-            SignUp
+            {loading ? '...loading.' : 'SignUp'}
           </button>
         </form>
         Or
