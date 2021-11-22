@@ -17,7 +17,7 @@ export default function Nav() {
   useEffect(() => {
     if (
       (location.pathname === '/' && currentUser === undefined) ||
-      (location.pathname === '/new' && currentUser === undefined) ||
+      (location.pathname === '/add' && currentUser === undefined) ||
       (location.pathname === '/leaderboard' && currentUser === undefined)
     ) {
       navigate('/login');
