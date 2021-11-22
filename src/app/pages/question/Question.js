@@ -25,8 +25,10 @@ export default function QuestionPage() {
       optionTwo.votes.includes(loggedUser)
     ) {
       setShowResults(true);
+    } else if (loggedUser === null) {
+      navigate('/login');
     }
-  }, [setShowResults, optionTwo, optionOne, loggedUser]);
+  }, [setShowResults, optionTwo, optionOne, loggedUser, navigate]);
 
   const handleForm = (e) => {
     e.preventDefault();

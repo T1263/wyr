@@ -12,11 +12,11 @@ export default function SignUp() {
   const [fname, setFname] = useState('');
   const [lname, setlname] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let fullName = fname + ' ' + lname;
     let userId = fullName.toLowerCase().replace(/ /g, '');
-    dispatch(
+    await dispatch(
       signUpUsers({
         id: userId,
         name: fullName,
