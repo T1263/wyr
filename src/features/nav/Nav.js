@@ -15,10 +15,14 @@ export default function Nav() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (currentUser === undefined) {
+    if (
+      (location.pathname === '/' && currentUser === undefined) ||
+      (location.pathname === '/new' && currentUser === undefined) ||
+      (location.pathname === '/leaderboard' && currentUser === undefined)
+    ) {
       navigate('/login');
     }
-  }, [navigate, currentUser]);
+  }, [navigate, currentUser, location]);
 
   return (
     <div className={css.nav}>
