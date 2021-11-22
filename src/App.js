@@ -27,7 +27,7 @@ function App() {
       <Nav />
       <Routes>
         <Route index path="/" element={<Start />} />
-        <Route path="/new" element={<NewPoll />} />
+        <Route path="/add" element={<NewPoll />} />
         <Route path="/leaderboard" element={<LeaderBoard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/question/:id" element={<QuestionPage />} />

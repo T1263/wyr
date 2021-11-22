@@ -33,8 +33,8 @@ export default function Nav() {
             <li className={location.pathname === '/' ? css.active : ''}>
               <Link to="/">Start</Link>
             </li>
-            <li className={location.pathname === '/new' ? css.active : ''}>
-              <Link to="/new">New Poll</Link>
+            <li className={location.pathname === '/add' ? css.active : ''}>
+              <Link to="/add">New Poll</Link>
             </li>
             <li
               className={location.pathname === '/leaderboard' ? css.active : ''}
