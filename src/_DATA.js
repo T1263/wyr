@@ -203,3 +203,17 @@ export function _saveQuestionAnswer({ authedUser, qid, answer }) {
     }, 500);
   });
 }
+
+// Added for creating new users.
+export function _createUser(user) {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      users = {
+        ...users,
+        [user.id]: user,
+      };
+
+      res();
+    }, 1000);
+  });
+}

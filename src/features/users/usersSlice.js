@@ -1,9 +1,18 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { _getUsers } from '../../_DATA';
-
+import { _getUsers, _createUser } from '../../_DATA';
+import { logIn } from '../login/loginSlice';
 export const fetchUsers = createAsyncThunk('users/fetchAll', async () => {
   return await _getUsers();
 });
+
+export const signUpUsers = createAsyncThunk(
+  'users/signUp',
+  async (user, { dispatch }) => {
+    await _createUser(user);
+    dispatch(create(user));
+    dispatch(logIn(user.id));
+  }
+);
 
 export const usersSlice = createSlice({
   name: 'users',
@@ -12,6 +21,9 @@ export const usersSlice = createSlice({
     loading: false,
   },
   reducers: {
+    create: (state, action) => {
+      state.users[action.payload.id] = action.payload;
+    },
     updateQuestions: (state, action) => {
       const { id, author } = action.payload;
       state.users[author].questions.push(id);
@@ -32,5 +44,6 @@ export const usersSlice = createSlice({
   },
 });
 
-export const { setUsers, updateQuestions, updateAnswers } = usersSlice.actions;
+export const { setUsers, updateQuestions, updateAnswers, create } =
+  usersSlice.actions;
 export default usersSlice.reducer;
