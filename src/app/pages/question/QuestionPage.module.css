@@ -39,3 +39,33 @@
 .or {
   font-size: 20px;
 }
+
+.option1,
+.option2 {
+  display: flex;
+  justify-content: space-between;
+}
+.vote {
+  text-align: center;
+  color: green;
+  font-size: 30px;
+}
+.option1 {
+  border-bottom: 1px solid black;
+}
+
+.questionPage button {
+  cursor: pointer;
+  background: #212121;
+  margin: 10px;
+  height: 40px;
+  color: white;
+  border: none;
+}
+.questionPage button:hover {
+  background: #464545;
+}
+.questionPage button:disabled {
+  background: rgb(99, 98, 98);
+  cursor: not-allowed;
+}

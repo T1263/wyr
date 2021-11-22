@@ -51,24 +51,30 @@ export default function QuestionPage() {
     <div className={css.questionPage}>
       {showResults ? (
         <div className={css.card}>
-          <p className={css.header}>{author} is asking:</p>
+          <h3 className={css.header}>{author} is asking:</h3>
           <div className={css.option1}>
-            <p>{optionOne.text}</p>
-            <p>
-              {numVotesOne} out of {numVotesOne + numVotesTwo} votes
-            </p>
+            <div>
+              <p>{optionOne.text}</p>
+              <p>
+                {numVotesOne} out of {numVotesOne + numVotesTwo}
+                {numVotesOne + numVotesTwo <= 1 ? ' vote' : ' votes'}
+              </p>
+            </div>
             {(optionOne.votes.includes(loggedUser) || question1) && (
-              <p>Your Vote</p>
+              <p className={css.vote}>✔ You</p>
             )}
           </div>
 
           <div className={css.option2}>
-            <p>{optionTwo.text}</p>
-            <p>
-              {numVotesTwo} out of {numVotesOne + numVotesTwo} votes
-            </p>
+            <div>
+              <p>{optionTwo.text}</p>
+              <p>
+                {numVotesTwo} out of {numVotesOne + numVotesTwo}{' '}
+                {numVotesOne + numVotesTwo <= 1 ? ' vote' : ' votes'}
+              </p>
+            </div>
             {(optionTwo.votes.includes(loggedUser) || question2) && (
-              <p>Your Vote</p>
+              <p className={css.vote}>✔ You</p>
             )}
           </div>
 
