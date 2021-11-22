@@ -19,6 +19,14 @@
   font-size: 30px;
   cursor: pointer;
 }
+
+.tabs .tabsButtons span:last-of-type {
+  padding-right: 90px;
+}
 .active {
-  border-bottom: 3px solid #212121 !important;
+  border-bottom: 3px solid white !important;
+}
+
+.tabsButtons {
+  border: 3px solid #212121 !important;
 }
