@@ -58,6 +58,7 @@ export default function QuestionPage() {
       {showResults ? (
         <div className={css.card}>
           <h3 className={css.header}>{author} is asking:</h3>
+          <h5>Would you rather...</h5>
           <div className={css.option1}>
             <div>
               <p>{optionOne.text}</p>
