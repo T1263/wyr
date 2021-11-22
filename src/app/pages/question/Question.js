@@ -46,6 +46,10 @@ export default function QuestionPage() {
     setShowResults(true);
   };
 
+  function percentage(vote, totalVotes) {
+    return Math.round((100 * vote) / totalVotes);
+  }
+
   const disabled = () => question1 === false && question2 === false;
   return (
     <div className={css.questionPage}>
@@ -55,11 +59,14 @@ export default function QuestionPage() {
           <div className={css.option1}>
             <div>
               <p>{optionOne.text}</p>
-              <p>
+
+              <p className={css.percentageVote}>
                 {numVotesOne} out of {numVotesOne + numVotesTwo}
-                {numVotesOne + numVotesTwo <= 1 ? ' vote' : ' votes'}
+                {numVotesOne + numVotesTwo <= 1 ? ' vote' : ' votes'} |{' '}
+                {percentage(numVotesOne, numVotesOne + numVotesTwo)}%
               </p>
             </div>
+
             {(optionOne.votes.includes(loggedUser) || question1) && (
               <p className={css.vote}>✔ You</p>
             )}
@@ -70,7 +77,8 @@ export default function QuestionPage() {
               <p>{optionTwo.text}</p>
               <p>
                 {numVotesTwo} out of {numVotesOne + numVotesTwo}{' '}
-                {numVotesOne + numVotesTwo <= 1 ? ' vote' : ' votes'}
+                {numVotesOne + numVotesTwo <= 1 ? ' vote' : ' votes'} |{' '}
+                {percentage(numVotesTwo, numVotesOne + numVotesTwo)}%
               </p>
             </div>
             {(optionTwo.votes.includes(loggedUser) || question2) && (
