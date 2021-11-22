@@ -15,8 +15,8 @@ export const questionSelector = (state) => {
     answered.push(questions.questions[item]);
   });
   return {
-    unanswered,
-    answered,
+    unanswered: unanswered.sort((a, b) => a.timestamp - b.timestamp),
+    answered: answered.sort((a, b) => a.timestamp - b.timestamp),
     users: users.users,
     loading: questions.loading,
   };
