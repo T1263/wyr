@@ -48,9 +48,8 @@ export default function QuestionPage() {
     setShowResults(true);
   };
 
-  function percentage(vote, totalVotes) {
-    return Math.round((100 * vote) / totalVotes);
-  }
+  const percentage = (vote, totalVotes) =>
+    Math.round((100 * vote) / totalVotes);
 
   const disabled = () => question1 === false && question2 === false;
   return (
