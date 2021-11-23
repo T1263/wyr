@@ -8,27 +8,46 @@ export default function QuestionPage() {
   const [question1, checkQuestion1] = useState(false);
   const [question2, checkQuestion2] = useState(false);
 
-  const { question, user } = useLocation().state;
-  const { id, author, optionOne, optionTwo } = question;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const [numVotesOne, setNumVotesOne] = useState(optionOne.votes.length);
-  const [numVotesTwo, setNumVotesTwo] = useState(optionTwo.votes.length);
+  let questionInitState = {
+    id: '',
+    author: '',
+    timestamp: '',
+    optionOne: { votes: [], text: '' },
+    optionTwo: { votes: [], text: '' },
+  };
+  const [question, setQuestion] = useState(questionInitState);
+  const [user, setUser] = useState({});
+
+  const [numVotesOne, setNumVotesOne] = useState(0);
+  const [numVotesTwo, setNumVotesTwo] = useState(0);
 
   const [showResults, setShowResults] = useState(false);
   const loggedUser = useSelector(({ loggedUser }) => loggedUser.value);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
-    if (
-      optionOne.votes.includes(loggedUser) ||
-      optionTwo.votes.includes(loggedUser)
-    ) {
-      setShowResults(true);
-    } else if (loggedUser === null) {
-      navigate('/login');
+    if (location.state === null) {
+      // Redirect to a random path caught by the NotFound component
+      navigate('/questionNotFound');
+    } else {
+      setQuestion((prevState) => ({
+        ...prevState,
+        ...location.state.question,
+      }));
+      setUser(location.state.user);
+      setNumVotesOne(question.optionOne.votes.length);
+      setNumVotesTwo(question.optionTwo.votes.length);
+      if (
+        question.optionOne.votes.includes(loggedUser) ||
+        question.optionTwo.votes.includes(loggedUser)
+      ) {
+        setShowResults(true);
+      }
     }
-  }, [setShowResults, optionTwo, optionOne, loggedUser, navigate]);
+  }, [setShowResults, question, loggedUser, navigate, location]);
 
   const handleForm = (e) => {
     e.preventDefault();
@@ -52,6 +71,9 @@ export default function QuestionPage() {
     Math.round((100 * vote) / totalVotes);
 
   const disabled = () => question1 === false && question2 === false;
+
+  const { id, author, optionOne, optionTwo } = question;
+
   return (
     <div className={css.questionPage}>
       {showResults ? (
