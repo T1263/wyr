@@ -33,10 +33,7 @@ export default function QuestionPage() {
       // Redirect to a random path caught by the NotFound component
       navigate('/questionNotFound');
     } else {
-      setQuestion((prevState) => ({
-        ...prevState,
-        ...location.state.question,
-      }));
+      setQuestion(location.state.question);
       setUser(location.state.user);
       setNumVotesOne(question.optionOne.votes.length);
       setNumVotesTwo(question.optionTwo.votes.length);

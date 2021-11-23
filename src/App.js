@@ -13,7 +13,7 @@ import { fetchUsers } from './features/users/usersSlice';
 import QuestionPage from './app/pages/question/Question';
 import NotFound from './app/pages/notFound/NotFound';
 import SignUp from './app/pages/signUp/SignUp';
-
+import RequireAuth from './features/requireAuth';
 function App() {
   const dispatch = useDispatch();
 
@@ -26,11 +26,40 @@ function App() {
     <div className="App">
       <Nav />
       <Routes>
-        <Route index path="/" element={<Start />} />
-        <Route path="/add" element={<NewPoll />} />
-        <Route path="/leaderboard" element={<LeaderBoard />} />
+        <Route
+          index
+          path="/"
+          element={
+            <RequireAuth>
+              <Start />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/add"
+          element={
+            <RequireAuth>
+              <NewPoll />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/leaderboard"
+          element={
+            <RequireAuth>
+              <LeaderBoard />
+            </RequireAuth>
+          }
+        />
         <Route path="/login" element={<Login />} />
-        <Route path="/question/:id" element={<QuestionPage />} />
+        <Route
+          path="/question/:id"
+          element={
+            <RequireAuth>
+              <QuestionPage />
+            </RequireAuth>
+          }
+        />
         <Route path="/signup" element={<SignUp />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import css from './LoginForm.module.css';
 import { logIn } from './loginSlice';
-
-export default function LoginForm() {
+import useAuth from '../../app/useAuth';
+export default function LoginForm({ locationState }) {
   const [userId, setUserId] = useState('choose');
   const { users, loading } = useSelector(({ users }) => ({
     ...users,
@@ -13,17 +13,18 @@ export default function LoginForm() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { login } = useAuth();
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(logIn(userId));
-    navigate('/', { replace: true });
+
+    login().then(() => {
+      dispatch(logIn(userId));
+      navigate(locationState.path || '/');
+    });
   };
 
-  const disabled = () => {
-    if (userId !== '' && userId !== 'choose') return false;
-
-    return true;
-  };
+  const disabled = () => userId === '' && userId === 'choose';
   return (
     <>
       <form className={css.form} onSubmit={handleSubmit}>

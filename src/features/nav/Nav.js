@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { logOut } from '../login/loginSlice';
 import Logo from '../logo/Logo';
 import css from './Nav.module.css';
+import useAuth from '../../app/useAuth';
 
 export default function Nav() {
   const currentUser = useSelector(
@@ -13,6 +14,7 @@ export default function Nav() {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { logout } = useAuth();
 
   return (
     <div className={css.nav}>
@@ -44,8 +46,10 @@ export default function Nav() {
 
               <button
                 onClick={() => {
-                  dispatch(logOut());
-                  navigate('/login', { replace: true });
+                  logout().then(() => {
+                    dispatch(logOut());
+                    navigate('/');
+                  });
                 }}
               >
                 Out →

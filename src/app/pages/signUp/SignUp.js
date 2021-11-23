@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { signUpUsers } from '../../../features/users/usersSlice';
 import css from './SignUp.module.css';
+import useAuth from '../../useAuth';
 
 export default function SignUp() {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ export default function SignUp() {
   const loading = useSelector(({ users }) => users.loading);
   const [fname, setFname] = useState('');
   const [lname, setlname] = useState('');
+  const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +30,8 @@ export default function SignUp() {
       })
     );
 
-    navigate('/', { replace: true });
+    await login();
+    navigate('/');
   };
   const disabled = () => {
     if (fname.length <= 5 || lname.length <= 5) return true;
