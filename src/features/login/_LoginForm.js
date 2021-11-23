@@ -41,7 +41,7 @@ export default function LoginForm() {
           ))}
         </select>
         <button type="submit" disabled={disabled()}>
-          In →
+          {loading ? '...loading' : 'In →'}
         </button>
       </form>
       Or

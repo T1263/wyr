@@ -52,7 +52,7 @@ export default function SignUp() {
             onChange={({ target }) => setlname(target.value)}
           />
           <button type="submit" disabled={disabled()}>
-            {loading ? '...loading.' : 'SignUp'}
+            {loading ? '...loading.' : 'SignUp →'}
           </button>
         </form>
         Or
