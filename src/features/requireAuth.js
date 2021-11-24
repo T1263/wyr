@@ -1,3 +1,4 @@
+// Code mostly attributed to ui.dev and Tyler McGinnis
 import { Navigate, useLocation } from 'react-router';
 import useAuth from '../app/useAuth';
 

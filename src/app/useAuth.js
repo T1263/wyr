@@ -1,3 +1,4 @@
+// Code mostly attributed to ui.dev and Tyler McGinnis
 import React, { createContext, useState, useContext } from 'react';
 
 const authContext = createContext();
